@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/devzzk/memrizr/core"
+	"github.com/devzzk/memrizr/global"
 	"log"
 	"net/http"
 	"os"
@@ -11,6 +13,10 @@ import (
 
 func main() {
 	log.Println("Starting server...")
+
+	core.InitConf()
+	// 链接数据库
+	global.DB = core.InitGorm()
 
 	gin.SetMode(gin.ReleaseMode)
 
@@ -24,7 +30,7 @@ func main() {
 	})
 
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":8000",
 		Handler: r,
 	}
 

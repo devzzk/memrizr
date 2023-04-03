@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  ### MySQL ################################################
+  mysql:
+    platform: linux/x86_64
+    build:
+      context: ./docker/mysql
+      args:
+        - MYSQL_VERSION=5.7
+    environment:
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=123456
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./docker/docker-runtime/mysql:/var/lib/mysql
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "33060:3306"

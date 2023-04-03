@@ -7,6 +7,9 @@ mysql:
   user: root
   password: 123456
   log_level: local
+  config:
+  max_idle_cons: 10
+  max_open_conns: 100
 
 logger:
   level: info
